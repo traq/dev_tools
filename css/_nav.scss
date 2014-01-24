@@ -1,0 +1,63 @@
+/* ========== Nav ========== */
+
+#nav {
+    background: #3478AA;
+    color: #000;
+    height: 20px;
+    padding: 0 5px;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        display: inline;
+    }
+
+    a {
+        color: #fff;
+        padding: 4px 10px;
+        text-decoration: none;
+    }
+
+    a:hover, a:focus, a:active, li.active a {
+        background: #fff;
+        color: #000;
+    }
+}
+
+#meta_nav {
+    font-size: 11px;
+    height: 16px;
+    padding: 2px 5px;
+    background: #265f98;
+
+    ul {
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: inline;
+            margin-right: 5px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    li.active, a:hover {
+        text-decoration: underline;
+    }
+}
+
+#user_nav {
+    float: right;
+}
