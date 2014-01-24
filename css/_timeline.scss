@@ -1,0 +1,31 @@
+/* ========== Timeline ========== */
+
+.timeline.content {
+    h3 {
+        margin-top:  15px;
+    }
+
+    dl {
+        dt {
+            font-weight: normal;
+
+            .time {
+                color: #777;
+            }
+        }
+    }
+
+    .timeline_filters {
+        width: 180px;
+        float: right;
+    }
+
+    fieldset {
+        padding: 5px 10px;
+        padding-bottom: 0;
+
+        .actions {
+            margin-top: 5px;
+        }
+    }
+}
