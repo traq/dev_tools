@@ -40,6 +40,7 @@ $permissions = array(
         array(DEFAULT_ID, 'delete_timeline_events', 0),
 
         // Tickets
+        array(DEFAULT_ID, 'view_tickets',              1),
         array(DEFAULT_ID, 'create_tickets',            1),
         array(DEFAULT_ID, 'update_tickets',            1),
         array(DEFAULT_ID, 'delete_tickets',            0),
@@ -107,6 +108,7 @@ $permissions = array(
         array(DEFAULT_ID, 'delete_timeline_events', 0),
 
         // Tickets
+        array(DEFAULT_ID, 'view_tickets',              1),
         array(DEFAULT_ID, 'create_tickets',            1),
         array(DEFAULT_ID, 'update_tickets',            1),
         array(DEFAULT_ID, 'delete_tickets',            0),
