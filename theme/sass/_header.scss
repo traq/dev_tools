@@ -1,0 +1,35 @@
+/* Header CSS */
+
+.navbar-inverse {
+    margin-bottom: 0;
+    height: 30px;
+    min-height: 30px;
+    z-index: 1005;
+
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .navbar-nav > li > a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.navbar-default {
+    .nav > li.roadmap.dropdown > a.link {
+        float:left;
+        padding-right: 5px;
+    }
+    .nav > li.roadmap.dropdown > .dropdown-toggle {
+        float:left;
+        padding-left: 0;
+    }
+
+    .btn-create-issue {
+        margin-top: 10px;
+        margin-left: 8px;
+        /*border-color: #285e8e;*/
+    }
+}

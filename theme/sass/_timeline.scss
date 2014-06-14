@@ -1,0 +1,32 @@
+/* Timeline CSS */
+
+#timeline.container {
+    h2 {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+    }
+
+    dl {
+        dt {
+            font-weight: normal;
+        }
+
+        dd {
+            margin-left: 25px;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+#timeline-filters {
+    width: 180px;
+
+    fieldset {
+        padding: 5px 10px;
+        padding-bottom: 0;
+
+        .actions {
+            margin-top: 5px;
+        }
+    }
+}

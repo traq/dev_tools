@@ -1,0 +1,39 @@
+/* Projects CSS */
+
+#project-list {
+    margin: 0;
+    padding: 0;
+
+    > li {
+        display: inline-block;
+        vertical-align: top;
+        margin-bottom: 15px;
+
+        width: 49%;
+        max-width: 49%;
+
+        &:first-child {
+            margin-right: 15px;
+        }
+
+        h2 {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 9px;
+        }
+
+        nav {
+            margin-bottom: 4px;
+
+            .nav > li > a {
+                padding: 5px 15px;
+            }
+        }
+    }
+}
+
+.codename {
+    &:before,
+    &:after {
+        content: "\"";
+    }
+}
