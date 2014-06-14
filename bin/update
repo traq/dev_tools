@@ -1,4 +1,4 @@
 git pull origin master
-cd vendor/avalon
+cd vendor/Radium
 git pull origin master
 cd ../../
