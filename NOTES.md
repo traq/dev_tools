@@ -18,6 +18,9 @@ We then potentially end up with the following:
     5:43pm Feature #122 commented on: Add this useful thing
     by SomeoneAlive
 
+This will of course be done on a per-day basis, so events from a Friday wont be
+grouped with an event on a Saturday.
+
 ## Permissions
 
 The permission system is going to be completely overhauled.
