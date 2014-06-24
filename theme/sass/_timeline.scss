@@ -20,10 +20,18 @@
 
 #timeline-filters {
     width: 180px;
+    margin-top: 15px;
 
     fieldset {
-        padding: 5px 10px;
-        padding-bottom: 0;
+        padding: 5px 10px 10px 10px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        background-color: #fff;
+
+        legend {
+            border: 0;
+            margin-bottom: 0;
+        }
 
         .actions {
             margin-top: 5px;
