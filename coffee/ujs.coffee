@@ -34,3 +34,7 @@ $(document).ready ->
     window.traq.popoverConfirm $(this), $(this).attr('data-ajax-confirm'), ->
       $.ajax url: $(this).attr('href'), dataType: 'script'
       event.preventDefault()
+
+  # Autocomplete
+  doc.on 'focus', '[data-autocomplete]', ->
+    $(this).autocomplete source: $(this).attr('data-autocomplete')
