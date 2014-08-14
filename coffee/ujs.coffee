@@ -38,3 +38,8 @@ $(document).ready ->
   # Autocomplete
   doc.on 'focus', '[data-autocomplete]', ->
     $(this).autocomplete source: $(this).attr('data-autocomplete')
+
+  # Overlay
+  doc.on 'click', '[data-overlay]', (event) ->
+    event.preventDefault()
+    window.traq.overlay $(this)

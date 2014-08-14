@@ -41,8 +41,26 @@ window.traq =
         field.hide()
 
   # Load overlay content and show
-  overlay: (uri) ->
-    alert 'not yet implemented'
+  overlay: (element) ->
+    if element.attr('data-overlay') == '1'
+      uri = element.attr('href')
+    else
+      uri = element.attr('data-overlay')
+
+    $.ajax
+      url: uri
+      type: "GET"
+      headers:
+        'x-overlay': true
+      success: (data) ->
+        $('#overlay').html data
+
+        if element.attr('data-target')?
+          modal = $(element.attr('data-target'))
+        else
+          modal = $('#overlay .modal')
+
+        modal.modal('show')
 
   # Popover confirmation
   popoverConfirm: (element, message, callback) ->
