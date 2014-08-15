@@ -26,7 +26,7 @@ window.traq =
 
     $("#description").load window.traq.uri + '/_ajax/ticket_template/' + typeId
 
-    @updateTicketCustomFields()
+    window.traq.updateTicketCustomFields()
 
   # Update ticket form to show and/or hide custom form fields
   updateTicketCustomFields: ->
