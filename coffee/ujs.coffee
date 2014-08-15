@@ -20,9 +20,12 @@ $(document).ready ->
   doc = $(document)
 
   # Popover confirmation
-  doc.on 'click', '[data-confirm]', ->
+  # Doesn't apply to any content added after the fact, might turn it into a library to
+  # work in much the same way the popover library works when used with a selector.
+  $('[data-confirm]').each ->
+    href = $(this).attr('href')
     window.traq.popoverConfirm $(this), $(this).attr('data-confirm'), ->
-      window.location.href = $(this).attr('href')
+      window.location.href = href
 
   # Ajax based on elements `href` attribute
   doc.on 'click', '[data-ajax=1]', (event) ->

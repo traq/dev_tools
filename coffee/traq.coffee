@@ -63,5 +63,37 @@ window.traq =
         modal.modal('show')
 
   # Popover confirmation
+  # TODO: Turn this into a library and clean it up
   popoverConfirm: (element, message, callback) ->
-    alert 'not yet implemented'
+    element.on 'click', (e) -> e.preventDefault()
+
+    content = '<div class="text-center"><div class="btn-group">' +
+                '<button class="btn btn-sm btn-primary popover-btn-confirm">' +
+                  '<i class="fa fa-check"></i> ' +
+                  window.traq.locale.confirm.yes +
+                '</button>' +
+                '<button class="btn btn-sm btn-default popover-btn-cancel">' +
+                  '<i class="fa fa-times"></i> ' +
+                  window.traq.locale.confirm.no +
+                '</button>' +
+              '</div></div>'
+
+    element.popover
+      title     : message
+      content   : content
+      html      : true
+      placement : 'bottom'
+      trigger   : 'click focus'
+
+    $(document).on 'shown.bs.popover', (event) ->
+      link    = $(event.target)
+      popover = link.next()
+
+      # Confirmed
+      popover.find('.popover-btn-confirm').one 'click', ->
+        callback()
+        popover.popover 'hide'
+
+      # Cancelled
+      popover.find('.popover-btn-cancel').one 'click', ->
+        popover.popover 'hide'
