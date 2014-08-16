@@ -35,8 +35,10 @@ window.traq =
     $(".properties .custom_field").each ->
       field = $(this)
 
-      if field.hasClass('field-for-type-0') or field.hasClass('field-for-type' + typeId)
+      if field.hasClass('field-for-type-0') or
+      field.hasClass('field-for-type' + typeId)
         field.show()
+        alert 'wat'
       else
         field.hide()
 
@@ -55,7 +57,7 @@ window.traq =
       success: (data) ->
         $('#overlay').html data
 
-        if element.attr('data-target')?
+        if element.attr('data-target') != null
           modal = $(element.attr('data-target'))
         else
           modal = $('#overlay .modal')
