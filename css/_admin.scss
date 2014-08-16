@@ -1,57 +1,57 @@
-/* ========== Admin ========== */
+// ========== Admin ==========
 
 .admin {
-    &.content {
-        h3 {
-            margin-bottom: 0;
-            line-height: 1;
-        }
-
-        dl {
-            margin: 0;
-
-            &:after {
-                display: table;
-                content: "";
-                line-height: 0;
-                clear: both;
-            }
-
-            dt {
-                float: left;
-                clear: both;
-            }
-
-            dd {
-                float: right;
-            }
-        }
-
-        #update {
-            text-align: center;
-        }
+  &.content {
+    h3 {
+      margin-bottom: 0;
+      line-height: 1;
     }
+
+    dl {
+      margin: 0;
+
+      &:after {
+        display: table;
+        content: '';
+        line-height: 0;
+        clear: both;
+      }
+
+      dt {
+        float: left;
+        clear: both;
+      }
+
+      dd {
+        float: right;
+      }
+    }
+
+    #update {
+      text-align: center;
+    }
+  }
 }
 
 #traq_news {
-    width: 100%;
-    margin-top: 10px;
+  width: 100%;
+  margin-top: 10px;
 
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 
-        h4 {
-            margin: 0;
-            font-weight: bold;
-            font-size: 16px;
-            display: inline-block;
-            margin-right: 10px;
-        }
+    h4 {
+      margin: 0;
+      font-weight: bold;
+      font-size: 16px;
+      display: inline-block;
+      margin-right: 10px;
     }
+  }
 
-    .secure_alert {
-        display: none;
-    }
+  .secure_alert {
+    display: none;
+  }
 }

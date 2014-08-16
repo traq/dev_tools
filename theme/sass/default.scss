@@ -1,5 +1,5 @@
 // Customised Bootstrap
-@import "custom_bootstrap/bootstrap";
+@import 'custom_bootstrap/bootstrap';
 
 /*!
  * Traq
@@ -22,20 +22,20 @@
  * You should have received a copy of the GNU General Public License
  * along with Traq. If not, see <http://www.gnu.org/licenses/>.
  */
-@import "header";
-@import "projects";
-@import "timeline";
-@import "roadmap";
-@import "forms";
-@import "plugins";
+@import 'header';
+@import 'projects';
+@import 'timeline';
+@import 'roadmap';
+@import 'forms';
+@import 'plugins';
 
 .page-header {
-    &:first-child {
-        margin-top: 0;
-    }
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 #footer {
-    margin-top: 15px;
-    margin-bottom: 25px;
+  margin-bottom: 25px;
+  margin-top: 15px;
 }

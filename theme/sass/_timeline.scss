@@ -1,40 +1,40 @@
-/* Timeline CSS */
+// Timeline CSS
 
-#timeline.container {
-    h2 {
-        border-bottom: 1px solid #eee;
-        padding-bottom: 5px;
+#timeline {
+  h2 {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+  }
+
+  dl {
+    dt {
+      font-weight: normal;
     }
 
-    dl {
-        dt {
-            font-weight: normal;
-        }
-
-        dd {
-            margin-left: 25px;
-            margin-bottom: 5px;
-        }
+    dd {
+      margin-bottom: 5px;
+      margin-left: 25px;
     }
+  }
 }
 
 #timeline-filters {
-    width: 180px;
-    margin-top: 15px;
+  margin-top: 15px;
+  width: 180px;
 
-    fieldset {
-        padding: 5px 10px 10px 10px;
-        border: 1px solid #eee;
-        border-radius: 5px;
-        background-color: #fff;
+  fieldset {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 5px 10px 10px;
 
-        legend {
-            border: 0;
-            margin-bottom: 0;
-        }
-
-        .actions {
-            margin-top: 5px;
-        }
+    legend {
+      border: 0;
+      margin-bottom: 0;
     }
+
+    .actions {
+      margin-top: 5px;
+    }
+  }
 }
