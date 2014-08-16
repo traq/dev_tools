@@ -1,0 +1,1 @@
+coffee -w --no-header --output assets/js _dev/coffee
