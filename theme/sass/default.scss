@@ -28,11 +28,17 @@
 @import 'roadmap';
 @import 'forms';
 @import 'plugins';
+@import 'tables';
 
 .page-header {
   &:first-child {
     margin-top: 0;
   }
+}
+
+.page-actions {
+  clear: both;
+  float: right;
 }
 
 #footer {
