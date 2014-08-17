@@ -20,23 +20,26 @@ $(document).ready ->
   doc = $(document)
 
   # Popover confirmation
-  # Doesn't apply to any content added after the fact, might turn it into a library to
-  # work in much the same way the popover library works when used with a selector.
-  $('[data-confirm]').each ->
+  # $('[data-confirm]').each ->/
+  doc.on 'click', '[data-confirm]', (event) ->
+    event.preventDefault()
+
     href = $(this).attr('href')
     window.traq.popoverConfirm $(this), $(this).attr('data-confirm'), ->
       window.location.href = href
+
+  # Popover confirmation for remote action
+  doc.on 'click', '[data-ajax-confirm]', (event) ->
+    event.preventDefault()
+
+    href = $(this).attr('href')
+    window.traq.popoverConfirm $(this), $(this).attr('data-ajax-confirm'), ->
+      $.ajax url: href, dataType: 'script'
 
   # Ajax based on elements `href` attribute
   doc.on 'click', '[data-ajax=1]', (event) ->
     $.ajax url: $(this).attr('href'), dataType: 'script'
     event.preventDefault()
-
-  # Popover confirmation for remote action
-  doc.on 'click', '[data-ajax-confirm]', ->
-    window.traq.popoverConfirm $(this), $(this).attr('data-ajax-confirm'), ->
-      $.ajax url: $(this).attr('href'), dataType: 'script'
-      event.preventDefault()
 
   # Autocomplete
   doc.on 'focus', '[data-autocomplete]', ->
