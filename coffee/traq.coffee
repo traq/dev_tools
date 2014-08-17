@@ -57,7 +57,7 @@ window.traq =
       success: (data) ->
         $('#overlay').html data
 
-        if element.attr('data-target') != null
+        if element.attr('data-target')?
           modal = $(element.attr('data-target'))
         else
           modal = $('#overlay .modal')
