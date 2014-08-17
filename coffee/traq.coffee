@@ -85,7 +85,7 @@ window.traq =
       content   : content
       html      : true
       placement : 'bottom'
-      trigger   : 'click focus'
+      trigger   : 'click'
 
     $(document).on 'shown.bs.popover', (event) ->
       link    = $(event.target)
