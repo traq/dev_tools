@@ -49,3 +49,10 @@ $(document).ready ->
   doc.on 'click', '[data-overlay]', (event) ->
     event.preventDefault()
     window.traq.overlay $(this)
+
+  # Datepicker
+  doc.on 'focus', 'input.datepicker', ->
+    $(this).datepicker
+      dateFormat: $(this).attr('data-date-format')
+      changeMonth: true
+      changeYear: true
