@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+require 'vendor/autoload.php';
+
+use Radium\Database;
+use Radium\Database\Migrator;
+
+Database::factory(require 'vendor/Traq/Config/Database.php');
+
+foreach (scandir('vendor/Traq/Migrations') as $file) {
+    if (is_file('vendor/Traq/Migrations/' . $file)) {
+        require 'vendor/Traq/Migrations/' . $file;
+    }
+}
+
+Migrator::migrate('up');
