@@ -32,13 +32,13 @@ $(document).ready ->
   doc.on 'click', '[data-ajax-confirm]', (event) ->
     event.preventDefault()
 
-    href = $(this).attr('href')
+    href = $(this).attr('href') + '.js'
     window.traq.popoverConfirm $(this), $(this).attr('data-ajax-confirm'), ->
       $.ajax url: href, dataType: 'script'
 
   # Ajax based on elements `href` attribute
   doc.on 'click', '[data-ajax=1]', (event) ->
-    $.ajax url: $(this).attr('href'), dataType: 'script'
+    $.ajax url: $(this).attr('href') + '.js', dataType: 'script'
     event.preventDefault()
 
   # Autocomplete
