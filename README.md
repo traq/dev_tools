@@ -19,5 +19,5 @@ your Traq directory like so:
 
 ````
 cd /path/to/traq
-git clone https://github.com/traq/dev_tools.git
+git clone https://github.com/traq/dev_tools.git _dev
 ````
