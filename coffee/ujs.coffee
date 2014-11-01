@@ -56,3 +56,8 @@ $(document).ready ->
       dateFormat: $(this).attr('data-date-format')
       changeMonth: true
       changeYear: true
+
+  # Ticket listing columns form toggle
+  $('#ticketlist-columns-toggle').on 'click', (event) ->
+    event.preventDefault()
+    $('#ticketlist-columns-content').slideToggle()
