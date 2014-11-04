@@ -53,7 +53,7 @@ window.traq =
       url: uri
       type: "GET"
       headers:
-        'x-overlay': true
+        'X-Overlay': true
       success: (data) ->
         $('#overlay').html data
 
