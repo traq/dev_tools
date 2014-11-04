@@ -1,0 +1,19 @@
+#!/usr/bin/env php
+<?php
+define('DOCROOT', realpath('.'));
+$assetDir = DOCROOT . '/assets';
+
+require DOCROOT . '/src/Helpers/Assets.php';
+use Traq\Helpers\Assets;
+
+$assets = [];
+
+foreach (Assets::jsAssets() as $asset) {
+    echo $asset . PHP_EOL;
+    $assets[] = file_get_contents("{$assetDir}/{$asset}");
+}
+
+file_put_contents(
+    "{$assetDir}/js.js",
+    implode(PHP_EOL, $assets)
+);
