@@ -19,6 +19,9 @@
 $(document).ready ->
   doc = $(document)
 
+  # Show ticket filters form
+  if $.cookie('show_ticket_filters') == 'true'
+    $('#ticket-filters-content').show()
   # Popover confirmation
   # $('[data-confirm]').each ->/
   doc.on 'click', '[data-confirm]', (event) ->
@@ -57,7 +60,25 @@ $(document).ready ->
       changeMonth: true
       changeYear: true
 
+  # Ticket filters form toggle
+  $('#ticket-filters-toggle').on 'click', (event) ->
+    event.preventDefault()
+
+    if $('#ticket-filters-content').css('display') == 'none'
+      $.cookie('show_ticket_filters', true)
+    else
+      $.cookie('show_ticket_filters', false)
+
+    $('#ticket-filters-content').slideToggle()
+
   # Ticket listing columns form toggle
   $('#ticketlist-columns-toggle').on 'click', (event) ->
     event.preventDefault()
     $('#ticketlist-columns-content').slideToggle()
+
+  # Remove ticket filter
+  doc.on 'click', 'button.remove-filter', (event) ->
+    event.preventDefault()
+    filterRow = $(this).attr('data-filter')
+    $('#filter-' + filterRow).fadeOut ->
+      $(this).remove()
