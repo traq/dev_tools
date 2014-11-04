@@ -22,6 +22,17 @@ $(document).ready ->
   # Show ticket filters form
   if $.cookie('show_ticket_filters') == 'true'
     $('#ticket-filters-content').show()
+
+  # Sexy selects
+  chosen_options = {
+    disable_search_threshold: 10
+  }
+
+  $('select:not(#new_filter)').chosen chosen_options
+
+  doc.on 'shown.bs.modal', ->
+    $('select:not(#new_filter)').chosen chosen_options
+
   # Popover confirmation
   # $('[data-confirm]').each ->/
   doc.on 'click', '[data-confirm]', (event) ->
