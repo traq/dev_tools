@@ -1,0 +1,7 @@
+{
+    "name": "traq-dev-tools",
+    "dependencies": {
+        "bootstrap": "~3.3.1",
+        "bootstrap-chosen": "~1.0.0"
+    }
+}

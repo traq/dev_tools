@@ -1,2 +1,3 @@
 .DS_Store
-/theme/.sass-cache
+/bower
+/node_modules
