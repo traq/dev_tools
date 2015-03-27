@@ -19,22 +19,15 @@ gulp.task('coffee', function(){
 // Compile Less
 gulp.task('less', function(){
     var lessConfig = {
+        compress: true,
         paths: [ path.join('bower') ]
     };
 
-    // assets/css/
     gulp.src([
-            './less/bootstrap.less',
             './less/traq.less'
+            // './less/chosen.less',
+            // './less/glyphicons.less'
         ])
         .pipe(less(lessConfig))
         .pipe(gulp.dest('../assets/css'));
-
-    // assets/
-    gulp.src([
-            './less/chosen.less',
-            './less/glyphicons.less'
-        ])
-        .pipe(less(lessConfig))
-        .pipe(gulp.dest('../assets'));
 });
