@@ -1,7 +1,10 @@
 <?php
 /*!
  * Traq
- * Copyright (C) 2009-2012 Traq.io
+ * Copyright (C) 2009-2015 Jack Polgar
+ * Copyright (C) 2012-2015 Traq.io
+ * https://github.com/nirix
+ * https://traq.io
  *
  * This file is part of Traq.
  *
@@ -18,181 +21,166 @@
  * along with Traq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-// This file prints out queries to setup the default permissions.
-
-header("Content-type: text/plain");
-$queries = array();
-$permission_id = 0;
-
-const DEFAULT_ID = 0;
-const GUEST_ID   = 3;
-const MANAGER_ID = 1;
-
-$permissions = array(
-    // Usergroup permissions
-    'usergroup' => array(
-        //------------------------------------------
-        // Defaults
-
+$usergroups = [
+    // Defaults
+    'defaults' => [
         // Projects
-        array(DEFAULT_ID, 'view',                   1),
-        array(DEFAULT_ID, 'project_settings',       0),
-        array(DEFAULT_ID, 'delete_timeline_events', 0),
+        'view'                   => true,
+        'project_settings'       => false,
+        'delete_timeline_events' => false,
 
         // Tickets
-        array(DEFAULT_ID, 'view_tickets',              1),
-        array(DEFAULT_ID, 'create_tickets',            1),
-        array(DEFAULT_ID, 'update_tickets',            1),
-        array(DEFAULT_ID, 'delete_tickets',            0),
-        array(DEFAULT_ID, 'move_tickets',              0),
-        array(DEFAULT_ID, 'comment_on_tickets',        1),
-        array(DEFAULT_ID, 'edit_ticket_description',   0),
-        array(DEFAULT_ID, 'vote_on_tickets',           1),
-        array(DEFAULT_ID, 'add_attachments',           1),
-        array(DEFAULT_ID, 'view_attachments',          1),
-        array(DEFAULT_ID, 'delete_attachments',        0),
-        array(DEFAULT_ID, 'perform_mass_actions',      0),
+        'view_tickets'            => true,
+        'create_tickets'          => true,
+        'update_tickets'          => true,
+        'delete_tickets'          => false,
+        'move_tickets'            => false,
+        'comment_on_tickets'      => true,
+        'edit_ticket_description' => false,
+        'vote_on_tickets'         => true,
+        'add_attachments'         => true,
+        'view_attachments'        => true,
+        'delete_attachments'      => false,
+        'perform_mass_actions'    => false,
 
         // Set ticket properties
-        array(DEFAULT_ID, 'ticket_properties_set_assigned_to',     0),
-        array(DEFAULT_ID, 'ticket_properties_set_milestone',       0),
-        array(DEFAULT_ID, 'ticket_properties_set_version',         0),
-        array(DEFAULT_ID, 'ticket_properties_set_component',       0),
-        array(DEFAULT_ID, 'ticket_properties_set_severity',        0),
-        array(DEFAULT_ID, 'ticket_properties_set_priority',        0),
-        array(DEFAULT_ID, 'ticket_properties_set_status',          0),
-        array(DEFAULT_ID, 'ticket_properties_set_tasks',           0),
-        array(DEFAULT_ID, 'ticket_properties_set_related_tickets', 0),
+        'ticket_properties_set_assigned_to'     => false,
+        'ticket_properties_set_milestone'       => true,
+        'ticket_properties_set_version'         => true,
+        'ticket_properties_set_component'       => false,
+        'ticket_properties_set_severity'        => false,
+        'ticket_properties_set_priority'        => false,
+        'ticket_properties_set_status'          => false,
+        'ticket_properties_set_tasks'           => false,
+        'ticket_properties_set_related_tickets' => false,
 
         // Change ticket properties
-        array(DEFAULT_ID, 'ticket_properties_change_type',            0),
-        array(DEFAULT_ID, 'ticket_properties_change_assigned_to',     0),
-        array(DEFAULT_ID, 'ticket_properties_change_milestone',       0),
-        array(DEFAULT_ID, 'ticket_properties_change_version',         0),
-        array(DEFAULT_ID, 'ticket_properties_change_component',       1),
-        array(DEFAULT_ID, 'ticket_properties_change_severity',        0),
-        array(DEFAULT_ID, 'ticket_properties_change_priority',        0),
-        array(DEFAULT_ID, 'ticket_properties_change_status',          0),
-        array(DEFAULT_ID, 'ticket_properties_change_summary',         0),
-        array(DEFAULT_ID, 'ticket_properties_change_tasks',           0),
-        array(DEFAULT_ID, 'ticket_properties_change_related_tickets', 0),
-        array(DEFAULT_ID, 'ticket_properties_complete_tasks',         0),
+        'ticket_properties_change_type'            => false,
+        'ticket_properties_change_assigned_to'     => false,
+        'ticket_properties_change_milestone'       => false,
+        'ticket_properties_change_version'         => false,
+        'ticket_properties_change_component'       => true,
+        'ticket_properties_change_severity'        => false,
+        'ticket_properties_change_priority'        => false,
+        'ticket_properties_change_status'          => false,
+        'ticket_properties_change_summary'         => false,
+        'ticket_properties_change_tasks'           => false,
+        'ticket_properties_change_related_tickets' => false,
+        'ticket_properties_complete_tasks'         => false,
 
-        // Ticket History
-        array(DEFAULT_ID, 'edit_ticket_history',   0),
-        array(DEFAULT_ID, 'delete_ticket_history', 0),
+        // Ticket history
+        'edit_ticket_history'   => false,
+        'delete_ticket_history' => false,
 
-        // Wiki
-        array(DEFAULT_ID, 'create_wiki_page', 0),
-        array(DEFAULT_ID, 'edit_wiki_page',   0),
-        array(DEFAULT_ID, 'delete_wiki_page', 0),
+        // Wiki page
+        'create_wiki_page' => false,
+        'edit_wiki_page'   => false,
+        'delete_wiki_page' => false
+    ],
 
-        //------------------------------------------
-        // Guests
+    // Guests
+    'guests' => [
+        'create_tickets'     => false,
+        'comment_on_tickets' => false,
+        'update_tickets'     => false,
+        'vote_on_tickets'    => false,
+        'add_attachments'    => false
+    ]
+];
 
-        // Tickets
-        array(GUEST_ID, 'create_tickets',     0),
-        array(GUEST_ID, 'comment_on_tickets', 0),
-        array(GUEST_ID, 'update_tickets',     0),
-        array(GUEST_ID, 'vote_on_tickets',    0),
-        array(GUEST_ID, 'add_attachments',    0)
-    ),
-    // Role permissions
-    'role' => array(
-        //------------------------------------------
-        // Defaults
-
+$roles = [
+    // Defaults
+    'defaults' => [
         // Projects
-        array(DEFAULT_ID, 'view',                   1),
-        array(DEFAULT_ID, 'project_settings',       0),
-        array(DEFAULT_ID, 'delete_timeline_events', 0),
+        'view'                   => true,
+        'project_settings'       => false,
+        'delete_timeline_events' => false,
 
         // Tickets
-        array(DEFAULT_ID, 'view_tickets',              1),
-        array(DEFAULT_ID, 'create_tickets',            1),
-        array(DEFAULT_ID, 'update_tickets',            1),
-        array(DEFAULT_ID, 'delete_tickets',            0),
-        array(DEFAULT_ID, 'move_tickets',              0),
-        array(DEFAULT_ID, 'comment_on_tickets',        1),
-        array(DEFAULT_ID, 'edit_ticket_description',   0),
-        array(DEFAULT_ID, 'vote_on_tickets',           1),
-        array(DEFAULT_ID, 'add_attachments',           1),
-        array(DEFAULT_ID, 'view_attachments',          1),
-        array(DEFAULT_ID, 'delete_attachments',        0),
-        array(DEFAULT_ID, 'perform_mass_actions',      0),
+        'view_tickets'            => true,
+        'create_tickets'          => true,
+        'update_tickets'          => true,
+        'delete_tickets'          => false,
+        'move_tickets'            => false,
+        'comment_on_tickets'      => true,
+        'edit_ticket_description' => false,
+        'vote_on_tickets'         => true,
+        'add_attachments'         => true,
+        'view_attachments'        => true,
+        'delete_attachments'      => false,
+        'perform_mass_actions'    => false,
 
         // Set ticket properties
-        array(DEFAULT_ID, 'ticket_properties_set_assigned_to',     1),
-        array(DEFAULT_ID, 'ticket_properties_set_milestone',       1),
-        array(DEFAULT_ID, 'ticket_properties_set_version',         1),
-        array(DEFAULT_ID, 'ticket_properties_set_component',       1),
-        array(DEFAULT_ID, 'ticket_properties_set_severity',        1),
-        array(DEFAULT_ID, 'ticket_properties_set_priority',        1),
-        array(DEFAULT_ID, 'ticket_properties_set_status',          1),
-        array(DEFAULT_ID, 'ticket_properties_set_tasks',           1),
-        array(DEFAULT_ID, 'ticket_properties_set_related_tickets', 1),
+        'ticket_properties_set_assigned_to'     => true,
+        'ticket_properties_set_milestone'       => true,
+        'ticket_properties_set_version'         => true,
+        'ticket_properties_set_component'       => true,
+        'ticket_properties_set_severity'        => true,
+        'ticket_properties_set_priority'        => true,
+        'ticket_properties_set_status'          => true,
+        'ticket_properties_set_tasks'           => true,
+        'ticket_properties_set_related_tickets' => true,
 
         // Change ticket properties
-        array(DEFAULT_ID, 'ticket_properties_change_type',            1),
-        array(DEFAULT_ID, 'ticket_properties_change_assigned_to',     1),
-        array(DEFAULT_ID, 'ticket_properties_change_milestone',       1),
-        array(DEFAULT_ID, 'ticket_properties_change_version',         1),
-        array(DEFAULT_ID, 'ticket_properties_change_component',       1),
-        array(DEFAULT_ID, 'ticket_properties_change_severity',        1),
-        array(DEFAULT_ID, 'ticket_properties_change_priority',        1),
-        array(DEFAULT_ID, 'ticket_properties_change_status',          1),
-        array(DEFAULT_ID, 'ticket_properties_change_summary',         1),
-        array(DEFAULT_ID, 'ticket_properties_change_tasks',           1),
-        array(DEFAULT_ID, 'ticket_properties_change_related_tickets', 1),
-        array(DEFAULT_ID, 'ticket_properties_complete_tasks',         1),
+        'ticket_properties_change_type'            => true,
+        'ticket_properties_change_assigned_to'     => true,
+        'ticket_properties_change_milestone'       => true,
+        'ticket_properties_change_version'         => true,
+        'ticket_properties_change_component'       => true,
+        'ticket_properties_change_severity'        => true,
+        'ticket_properties_change_priority'        => true,
+        'ticket_properties_change_status'          => true,
+        'ticket_properties_change_summary'         => true,
+        'ticket_properties_change_tasks'           => true,
+        'ticket_properties_change_related_tickets' => true,
+        'ticket_properties_complete_tasks'         => true,
 
-        // Ticket History
-        array(DEFAULT_ID, 'edit_ticket_history',   0),
-        array(DEFAULT_ID, 'delete_ticket_history', 0),
+        // Ticket history
+        'edit_ticket_history'   => false,
+        'delete_ticket_history' => false,
 
-        // Wiki
-        array(DEFAULT_ID, 'create_wiki_page', 0),
-        array(DEFAULT_ID, 'edit_wiki_page',   0),
-        array(DEFAULT_ID, 'delete_wiki_page', 0),
+        // Wiki page
+        'create_wiki_page' => false,
+        'edit_wiki_page'   => false,
+        'delete_wiki_page' => false
+    ],
 
-        //------------------------------------------
-        // Managers
-
+    // Managers
+    'managers' => [
         // Projects
-        array(MANAGER_ID, 'project_settings',       1),
-        array(MANAGER_ID, 'delete_timeline_events', 1),
+        'project_settings'       => true,
+        'delete_timeline_events' => true,
 
         // Tickets
-        array(MANAGER_ID, 'delete_tickets',          1),
-        array(MANAGER_ID, 'move_tickets',            1),
-        array(MANAGER_ID, 'edit_ticket_description', 1),
-        array(MANAGER_ID, 'delete_attachments',      1),
-        array(MANAGER_ID, 'edit_ticket_history',     1),
-        array(MANAGER_ID, 'delete_ticket_history',   1),
-        array(MANAGER_ID, 'perform_mass_actions',    1),
+        'delete_tickets'          => true,
+        'move_tickets'            => true,
+        'edit_ticket_description' => true,
+        'delete_attachments'      => true,
+        'edit_ticket_history'     => true,
+        'delete_ticket_history'   => true,
+        'perform_mass_actions'    => true,
 
         // Wiki
-        array(MANAGER_ID, 'create_wiki_page', 1),
-        array(MANAGER_ID, 'edit_wiki_page',   1),
-        array(MANAGER_ID, 'delete_wiki_page', 1)
-    )
-);
+        'create_wiki_page' => true,
+        'edit_wiki_page'   => true,
+        'delete_wiki_page' => true
+    ]
+];
+?>
+<h1>Permissions</h1>
 
-$query = array(
-    "INSERT INTO `traq_permissions` (`project_id`, `type`, `type_id`, `action`, `value`)",
-    "VALUES"
-);
+<h2>User groups</h2>
 
-foreach ($permissions as $type => $permissions) {
-    //$query[] = "# {$type}";
+<h3>Defaults</h3>
+<textarea><?=json_encode($usergroups['defaults'])?></textarea>
 
-    foreach ($permissions as $permission) {
-        $permission_id++;
-        $query[] = "  (0,'{$type}',{$permission[0]},'{$permission[1]}',{$permission[2]}),";
-    }
-}
+<h3>Guests</h3>
+<textarea><?=json_encode($usergroups['guests'])?></textarea>
 
-$query = implode(PHP_EOL, $query);
-$query[strlen($query)-1] = ';';
+<h2>Roles</h2>
 
-print($query);
+<h3>Defaults</h3>
+<textarea><?=json_encode($roles['defaults'])?></textarea>
+
+<h3>Managers</h3>
+<textarea><?=json_encode($roles['managers'])?></textarea>
