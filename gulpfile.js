@@ -7,6 +7,7 @@ var gulp   = require('gulp'),
 gulp.task('watch', function(){
     gulp.watch(['./coffee/*.coffee'], ['coffee']);
     gulp.watch(['./less/*.less'], ['less']);
+    gulp.watch(['./less/*/*.less'], ['less']);
 });
 
 // Compile CoffeeScript
