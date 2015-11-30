@@ -16,4 +16,11 @@ TestSuite::configure(function ($t) {
     define('START_MEM', memory_get_usage());
 });
 
-require __DIR__ . '/Controllers/UsersTest.php';
+
+foreach (scandir(__DIR__ . '/Controllers') as $testFile) {
+    if ($testFile !== '.' && $testFile !== '..') {
+        require __DIR__ . "/Controllers/{$testFile}";
+    }
+}
+
+TestSuite::run();
