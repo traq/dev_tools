@@ -1,7 +1,8 @@
 var gulp   = require('gulp'),
     path   = require('path'),
     coffee = require('gulp-coffee'),
-    less   = require('gulp-less');
+    less   = require('gulp-less'),
+    concat = require('gulp-concat');
 
 // Watch for changes
 gulp.task('watch', function(){
@@ -31,4 +32,16 @@ gulp.task('less', function(){
         ])
         .pipe(less(lessConfig))
         .pipe(gulp.dest('../assets/css'));
+});
+
+gulp.task('js', function() {
+    gulp.src([
+        './bower/jquery/dist/jquery.min.js',
+        './bower/jquery-cookie/jquery.cookie.js',
+        './bower/bootstrap/dist/js/bootstrap.min.js',
+        './bower/chosen/chosen.jquery.min.js',
+        './bower/moment/min/moment-with-locales.min.js'
+    ])
+    .pipe(concat('js.js'))
+    .pipe(gulp.dest('../assets/js'));
 });
