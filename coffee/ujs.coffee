@@ -1,7 +1,7 @@
 ###
 # Traq
-# Copyright (C) 2009-2014 Traq.io
-# Copyright (C) 2009-2014 Jack Polgar
+# Copyright (C) 2009-2016 Jack P.
+# Copyright (C) 2012-2016 Traq.io
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -93,3 +93,11 @@ $(document).ready ->
     filterRow = $(this).attr('data-filter')
     $('#filter-' + filterRow).fadeOut ->
       $(this).remove()
+
+  $('[data-moment]').each ->
+    orig = $(this).attr 'data-moment'
+
+    if orig
+      n = moment(orig).fromNow()
+      $(this).html n
+      $(this).attr 'title', orig
