@@ -36,7 +36,7 @@ gulp.task('less', function(){
 
 gulp.task('js', function() {
     gulp.src([
-        './bower/jquery/dist/jquery.min.js',
+        // './bower/jquery/dist/jquery.min.js',
         './bower/jquery-cookie/jquery.cookie.js',
         './bower/bootstrap/dist/js/bootstrap.min.js',
         './bower/chosen/chosen.jquery.min.js',

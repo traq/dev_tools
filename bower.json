@@ -2,7 +2,6 @@
     "name": "traq-dev-tools",
     "dependencies": {
         "bootstrap-chosen": "~1.0.0",
-        "jquery": "~2.1.0",
         "jquery-ui": "~1.11.0",
         "jquery-cookie": "~1.4.0",
         "bootstrap": "~3.3.0",
