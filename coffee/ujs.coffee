@@ -94,10 +94,14 @@ $(document).ready ->
     $('#filter-' + filterRow).fadeOut ->
       $(this).remove()
 
-  $('[data-moment]').each ->
-    orig = $(this).attr 'data-moment'
+  dataMoment = ->
+    $('[data-moment]').each ->
+      orig = $(this).attr 'data-moment'
 
-    if orig
-      n = moment(orig).fromNow()
-      $(this).html n
-      $(this).attr 'title', orig
+      if orig
+        n = moment(orig).fromNow()
+        $(this).html n
+        $(this).attr 'title', orig
+
+  dataMoment()
+  setInterval dataMoment, 30000
