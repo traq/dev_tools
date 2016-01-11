@@ -88,7 +88,7 @@ $(document).ready ->
     $('#ticketlist-columns-content').slideToggle()
 
   # Remove ticket filter
-  doc.on 'click', 'button.remove-filter', (event) ->
+  doc.on 'click', '.remove-filter', (event) ->
     event.preventDefault()
     filterRow = $(this).attr('data-filter')
     $('#filter-' + filterRow).fadeOut ->
